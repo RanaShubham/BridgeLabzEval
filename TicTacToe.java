@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	
-	Scanner s = new Scanner(System.in);
+	static Scanner s = new Scanner(System.in);
 	public static void main(String[] args) 
 	{
 		TicTacToe board = new TicTacToe();
@@ -18,6 +18,14 @@ public class TicTacToe {
 		else
 			computerChar = "X";
 
+		System.out.println("Do you want to toss to decide who makes first move ? Enter y or n");
+		String userTossChoice= s.next();
+		
+		if (userTossChoice.equals("y"))
+		{
+			board.doToss();
+		}
+		
 		board.showDefaultBoard(checkBoard);
 		board.makeMove(checkBoard,playerChar);
 		board.showBoard(checkBoard);
@@ -25,10 +33,28 @@ public class TicTacToe {
 	}
 
 
+	
+	public void doToss() 
+	{
+		int tossResult=(int) Math.round(Math.random());
+		
+		if (tossResult == 1)
+			System.out.println("You will make the first move");
+		else
+		{
+			System.out.println("Computer will make the first move");
+			System.exit(0);
+		}
+	}
+
+
+	
 	public String[] createCheckBoard()
 	{
 		return new String [9];
 	}
+	
+	
 	
 	public String chooseXorO()
 	{
@@ -40,6 +66,7 @@ public class TicTacToe {
 		else
 			return "X";
 	}
+	
 	
 
 	public void showDefaultBoard(String [] checkBoard)
@@ -59,9 +86,12 @@ public class TicTacToe {
 				System.out.println("\n");
 			}
 	}
+	
+	
+	
 	public void showBoard(String [] checkBoard)
 	{
-		for (int i=0;i<9;i++)
+		for (int i=0;i<9;)
 		{
 			for (int j=0;j<3;j++,i++)
 			{
@@ -70,6 +100,8 @@ public class TicTacToe {
 			System.out.println("\n");
 		}
 	}
+	
+	
 	
 	public void makeMove(String [] checkBoard, String playerChar)
 	{
