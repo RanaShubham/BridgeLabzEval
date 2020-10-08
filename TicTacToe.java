@@ -10,10 +10,17 @@ public class TicTacToe {
 		TicTacToe board = new TicTacToe();
 		String [] checkBoard=board.createCheckBoard();
 
-		int player = board.chooseXorO();
-		int computer = 1 - player;
+		String playerChar = board.chooseXorO();
+		String computerChar;
+		
+		if (playerChar.equals("X"))
+			computerChar = "O";
+		else
+			computerChar = "X";
 
 		board.showDefaultBoard(checkBoard);
+		board.makeMove(checkBoard,playerChar);
+		board.showBoard(checkBoard);
 		
 	}
 
@@ -23,15 +30,15 @@ public class TicTacToe {
 		return new String [9];
 	}
 	
-	public int chooseXorO()
+	public String chooseXorO()
 	{
 		System.out.println("Enter y if you want to choose O, Enter n if you want to choose X: ");
 		String choice = s.next();
 		
 		if (choice.equals("y"))
-			return 1;
+			return "O";
 		else
-			return 0;
+			return "X";
 	}
 	
 
@@ -42,7 +49,7 @@ public class TicTacToe {
 			checkBoard[i]="S";
 		}
 		
-		System.out.println("\n");
+		System.out.println("This is default check board \n");
 			for (int i=0;i<9;i=i+3)
 			{
 				for (int j=i;j<=i+2;j++)
@@ -52,6 +59,26 @@ public class TicTacToe {
 				System.out.println("\n");
 			}
 	}
+	public void showBoard(String [] checkBoard)
+	{
+		for (int i=0;i<9;i=i++)
+		{
+			for (int j=0;j<3;j++,i++)
+			{
+				System.out.print(checkBoard[i]+"	");
+			}
+			System.out.println("\n");
+		}
+	}
 	
-
+	public void makeMove(String [] checkBoard, String playerChar)
+	{
+		System.out.println("Enter a number 1 to 9 to make a move");
+		int move=s.nextInt()-1;
+		
+		if ( checkBoard[move].equals("S") )
+		{
+			checkBoard[move]=playerChar;
+		}
+	}
 }
