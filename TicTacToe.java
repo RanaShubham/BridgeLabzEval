@@ -4,26 +4,28 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	
+	Scanner s = new Scanner(System.in);
 	public static void main(String[] args) 
 	{
 		TicTacToe board = new TicTacToe();
-		board.createCheckBoard();
+		String [] checkBoard=board.createCheckBoard();
+
 		int player = board.chooseXorO();
 		int computer = 1 - player;
+
+		board.showDefaultBoard(checkBoard);
 		
 	}
 
 
-
-	public void createCheckBoard()
+	public String[] createCheckBoard()
 	{
-		char [] checkBoard = new char [10];
+		return new String [9];
 	}
 	
 	public int chooseXorO()
 	{
-		System.out.println("Enter y if you want to choose O, Enter n if you want to choose X");
-		Scanner s = new Scanner(System.in);
+		System.out.println("Enter y if you want to choose O, Enter n if you want to choose X: ");
 		String choice = s.next();
 		
 		if (choice.equals("y"))
@@ -31,4 +33,25 @@ public class TicTacToe {
 		else
 			return 0;
 	}
+	
+
+	public void showDefaultBoard(String [] checkBoard)
+	{
+		for (int i=0;i<9;i++)
+		{
+			checkBoard[i]="S";
+		}
+		
+		System.out.println("\n");
+			for (int i=0;i<9;i=i+3)
+			{
+				for (int j=i;j<=i+2;j++)
+				{
+					System.out.print(checkBoard[i]+"	");
+				}
+				System.out.println("\n");
+			}
+	}
+	
+
 }
